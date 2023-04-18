@@ -3,7 +3,7 @@ const express = require('express');
 const { requireToken } = require('./middleware/authorization');
 
 const router = express.Router()
-const Task = require('../models/Task')
+const Task = require('./models/Task')
 
 router.get("/", requireToken, async (req, res, next) => {
     try{
