@@ -1,9 +1,11 @@
 [
     {
-        "email": "k@k.com"
+        "name": "Ricky",
+        "password" : "123"
 
     },
     {
-        "email": "t@t.com"
+        "name": "Nav",
+        "password" : "123"
     }
 ]
