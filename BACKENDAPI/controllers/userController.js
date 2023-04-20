@@ -15,7 +15,7 @@ router.get("/createaccount", (req, res, next) => {
 //SIGN UP FOR ACCOUNT
 router.post("/createaccount", async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { name, password } = req.body;
     // const password = await bcrypt.hash(req.body.password, 12)
     const user = await User.create({ name, password });
     res.status(201).json(user);
