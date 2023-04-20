@@ -27,9 +27,9 @@ const Tasks = (props) => {
             e.preventDefault();
           }}
           action=""
-          class="form">
+          className="form">
           <input
-            class="input-form"
+            className="input-form"
             placeholder={props.title}
             type="text"
             ref={inputRef}
