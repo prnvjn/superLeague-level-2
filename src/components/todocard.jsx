@@ -37,9 +37,9 @@ export const TodoCard = (props) => {
               }
             ))
           }}        
-           action="" class="form">
+           action="" className="form">
           <input
-            class="input-form"
+            className="input-form"
             placeholder="Add your new task"
             type="text"
             value ={formData}
