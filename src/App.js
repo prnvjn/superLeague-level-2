@@ -1,10 +1,9 @@
 import "./App.css";
+import { Dashboard } from "./pages/dashboard";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Super League - Level 2 - Team 16</h1>
-    </div>
+      <Dashboard/>
   );
 }
 
