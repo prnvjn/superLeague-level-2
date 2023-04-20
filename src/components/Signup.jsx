@@ -1,16 +1,15 @@
 import loginService from '../services/login'
 import React, {useState} from 'react'
 import "../App.css";
-export const Login = () => {
+export const Signup = () => {
     const [name, setUsername] = useState('') 
     const [password, setPassword] = useState('') 
     const [user, setUser] = useState(null)
-    
     const handleLogin = async (event) => {
         event.preventDefault()
         
         try {
-          const user = await loginService.login({
+          const user = await loginService.signup({
             name, password,
           })
           setUser(user)
@@ -24,7 +23,7 @@ export const Login = () => {
         }
     }
   return (
-    <div >Login
+    <div >Signup
 
 <form onSubmit={handleLogin}>
       <div>
