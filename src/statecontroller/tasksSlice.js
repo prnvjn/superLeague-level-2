@@ -99,7 +99,7 @@ export const Tasks = createSlice({
     updateTask: (state, action) => {
       state.tasks.forEach((e) => {
         if (e.id === action.payload.id) {
-          state.tasks[state.tasks.indexOf(e)].title.push(action.payload.title)
+          state.tasks[state.tasks.indexOf(e)].title = action.payload.title;
         }
       });
     },
