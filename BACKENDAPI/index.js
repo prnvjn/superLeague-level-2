@@ -3,7 +3,7 @@
 //============
 const express = require("express");
 const cors = require("cors");
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const app = express();
 require("./db/connection");
 const PORT = process.env.PORT;

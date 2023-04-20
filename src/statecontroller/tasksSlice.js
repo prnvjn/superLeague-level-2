@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import login from '../services/login'
 
 export const Tasks = createSlice({
   name: "tasks",
@@ -112,7 +114,9 @@ export const Tasks = createSlice({
     },
   },
 });
-export const getTasks = (state) => state.tasks.value;
+export const getTasks = (state) => {
+console.log(login.fetchTasks())
+};
 
 export const { addTask, removeTask, updateTask, markComplete } = Tasks.actions;
 export default Tasks.reducer;

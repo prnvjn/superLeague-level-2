@@ -12,7 +12,9 @@ export const Login = () => {
         try {
           const user = await loginService.login({
             name, password,
-          })
+          }).then(
+            localStorage.setItem("user", name)
+          )
           setUser(user)
           setUsername('')
           setPassword('')
