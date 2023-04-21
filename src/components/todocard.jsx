@@ -17,7 +17,9 @@ import {
 import Inputfield from "./inpufield";
 import Note from ".//note";
 
-export const TodoCard = (props) => {
+
+
+export const TodoCard = (props, { taskData }) => {
   const inputRef = useRef();
   const dispatch = useDispatch();
   const tasks = useSelector(getTasks);
@@ -26,6 +28,16 @@ export const TodoCard = (props) => {
   const [title, setTitle] = useState("");
   const [descript, setDescription] = useState("");
   const [filter, setFilter] = useState("All");
+  const [formData,setFormData] = useState("") 
+
+  
+  return (
+    <div className="tasks">
+      <div className="tasksheader">
+        <h1>My Tasks</h1>
+        <img src={moonicon} alt="theme mode img" />
+      </div>
+
 
   return (
     <div className="body">
@@ -120,6 +132,7 @@ export const TodoCard = (props) => {
               />
             );
           })}
+
 
         {filter === "Pending" &&
           pendingTasks.map((task, index) => {

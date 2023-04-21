@@ -95,11 +95,22 @@ const Tasks = (props) => {
           <p>{props.description}</p>
         </div>
       ) : (
+
         <form action="" className="form">
           <input
             onChange={(e) => {
               setEditedData(e.target.value);
             }}
+
+        <form
+          onSubmit={(e) => {
+            setEdit(false);
+            e.preventDefault();
+          }}
+          action=""
+          className="form">
+          <input
+
             className="input-form"
             placeholder={props.title}
             type="text"

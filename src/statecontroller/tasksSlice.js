@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import login from '../services/login'
 
 export const Tasks = createSlice({
   name: "tasks",
@@ -75,6 +77,7 @@ export const Tasks = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.value.push(action.payload);
+
     },
     removeTask: (state, action) => {
       state.value = state.value.filter((task) => task.id !== action.payload.id);
@@ -133,12 +136,12 @@ export const Tasks = createSlice({
 
   },
 });
+
+
 export const getTasks = (state) => state.tasks.value;
 export const getPendingTasks = (state) =>   state.tasks.pendingTasks 
 ;
 export const getCompletedTasks = (state) => state.tasks.completedTasks
-
- 
 
 
 export const {

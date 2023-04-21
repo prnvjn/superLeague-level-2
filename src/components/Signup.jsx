@@ -1,20 +1,17 @@
 import loginService from '../services/login'
 import React, {useState} from 'react'
 import "../App.css";
-export const Login = () => {
+export const Signup = () => {
     const [name, setUsername] = useState('') 
     const [password, setPassword] = useState('') 
     const [user, setUser] = useState(null)
-    
     const handleLogin = async (event) => {
         event.preventDefault()
         
         try {
-          const user = await loginService.login({
+          const user = await loginService.signup({
             name, password,
-          }).then(
-            localStorage.setItem("user", name)
-          )
+          })
           setUser(user)
           setUsername('')
           setPassword('')
@@ -26,7 +23,7 @@ export const Login = () => {
         }
     }
   return (
-    <div >Login
+    <div >Signup
 
 <form onSubmit={handleLogin}>
       <div>
@@ -47,7 +44,7 @@ export const Login = () => {
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <button type="submit">login</button>
+      <button type="submit">Sign Up</button>
     </form> 
     {console.log(user)}     
     </div>
