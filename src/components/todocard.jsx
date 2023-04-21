@@ -40,13 +40,6 @@ export const TodoCard = (props) => {
                 title: formData,
                 status: "pending",
                 dueDate: "2023-04-30T00:00:00.000Z",
-<<<<<<< Updated upstream
-                user: "john"
-              }
-            ))
-          }}        
-           action="" class="form">
-=======
                 user: "john",
               })
             );
@@ -54,9 +47,8 @@ export const TodoCard = (props) => {
           }}
           action=""
           className="form">
->>>>>>> Stashed changes
           <input
-            class="input-form"
+            className="input-form"
             placeholder="Add your new task"
             type="text"
             value={formData}
@@ -143,9 +135,10 @@ export const TodoCard = (props) => {
             onClick={() => {
               console.log("clearing all");
               dispatch(deleteCompleted());
+              setFilter("All")
             }}
             className="task_status">
-            Clear Completed{" "}
+            Clear Completed
           </p>
         </div>
       </div>

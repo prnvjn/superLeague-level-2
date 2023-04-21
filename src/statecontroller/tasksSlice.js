@@ -40,12 +40,7 @@ export const Tasks = createSlice({
   },
   reducers: {
     addTask: (state, action) => {
-<<<<<<< Updated upstream
-    
-    //   [...state.tasks.push,action.payload]
-=======
       state.value.push(action.payload);
->>>>>>> Stashed changes
     },
     removeTask: (state, action) => {
       state.value = state.value.filter((task) => task.id !== action.payload.id);
@@ -53,11 +48,7 @@ export const Tasks = createSlice({
     updateTask: (state, action) => {
       state.value.forEach((e) => {
         if (e.id === action.payload.id) {
-<<<<<<< Updated upstream
-          state.tasks[state.tasks.indexOf(e)].title = action.payload.title;
-=======
           state.value[state.value.indexOf(e)].title = action.payload.title;
->>>>>>> Stashed changes
         }
       });
     },

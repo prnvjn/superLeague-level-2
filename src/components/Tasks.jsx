@@ -54,24 +54,12 @@ const Tasks = (props) => {
           {props.title}
         </li>
       ) : (
-<<<<<<< Updated upstream
-        <form
-          onSubmit={(e) => {
-            setEdit(false);
-            e.preventDefault();
-          }}
-          action=""
-          class="form">
-          <input
-            class="input-form"
-=======
         <form action="" className="form">
           <input
             onChange={(e) => {
               setEditedData(e.target.value);
             }}
             className="input-form"
->>>>>>> Stashed changes
             placeholder={props.title}
             type="text"
             id={props.id}
