@@ -8,7 +8,7 @@ export const Dashboard = () => {
     const fetchTasks = async () => {
         const token = 'Bearer ' + localStorage.getItem('token')
         console.log(token)
-        const baseUrl = 'http://localhost:8000/'
+        const baseUrl = 'https://backendfortasktracker.herokuapp.com/'
         const headers = { 
         'Content-Type' : 'application/json',
         'Accept' : 'application/json',

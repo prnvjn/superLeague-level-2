@@ -30,15 +30,6 @@ export const TodoCard = (props, { taskData }) => {
   const [filter, setFilter] = useState("All");
   const [formData,setFormData] = useState("") 
 
-  
-  return (
-    <div className="tasks">
-      <div className="tasksheader">
-        <h1>My Tasks</h1>
-        <img src={moonicon} alt="theme mode img" />
-      </div>
-
-
   return (
     <div className="body">
       <div className="tasks">
