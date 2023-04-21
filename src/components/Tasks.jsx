@@ -1,4 +1,4 @@
-import React, { inputRef, useState } from "react";
+import React, {  useState } from "react";
 import crossIcon from "../assets/images/icon-cross.svg";
 import checkicon from "../assets/images/icon-check.svg";
 
@@ -32,7 +32,7 @@ const Tasks = (props) => {
             className="input-form"
             placeholder={props.title}
             type="text"
-            ref={inputRef}
+            // ref={inputRef}
           />
         </form>
       )}
