@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const token = '1'
 console.log(token)
-const baseUrl = 'http://localhost:8000/'
+const baseUrl = 'https://backendfortasktracker.herokuapp.com/'
   const headers = { 
     'Content-Type' : 'application/json',
     'Accept' : 'application/json',
