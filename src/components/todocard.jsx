@@ -11,11 +11,15 @@ import {
   getTasks,
 } from "../statecontroller/tasksSlice";
 
-export const TodoCard = (props) => {
+
+
+export const TodoCard = (props, { taskData }) => {
   const inputRef = useRef();
   const dispatch = useDispatch();
   const tasks = useSelector(getTasks);
   const [formData,setFormData] = useState("") 
+
+  
   return (
     <div className="tasks">
       <div className="tasksheader">
@@ -53,7 +57,7 @@ export const TodoCard = (props) => {
       </div>
 
       <div className="alltaskscontainer">
-        {tasks.map((task, index) => {
+        {/* {tasks.map((task, index) => {
           return (
             <Tasks
               key={index}
@@ -65,7 +69,7 @@ export const TodoCard = (props) => {
               status={task.status}
             />
           );
-        })}
+        })} */}
 
         <div className="taskscontrols">
           <p>0 Tasks</p>

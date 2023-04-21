@@ -1,11 +1,19 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:8000/'
 
+const token = '1'
+console.log(token)
+const baseUrl = 'http://localhost:8000/'
+  const headers = { 
+    'Content-Type' : 'application/json',
+    'Accept' : 'application/json',
+     'Authorizaton': `Bearer ${(localStorage.getItem('token'))}`
+  }
+  console.log(headers)
 // sign in
 const login = async credentials => {
     console.log(credentials,"values")
   const response = await axios.post(`${baseUrl}login`, credentials)
-  console.log(response)
+  localStorage.setItem("token", (response.data.token))
   return response.data
 }
 
@@ -16,4 +24,17 @@ const signup = async credentials => {
   console.log(response)
   return response.data
 }
-export default { login,signup }
+
+const fetchTasks = async () => {
+ console.log('test')
+  //   await axios({
+  //     method: 'GET',
+  //     url: `${baseUrl}tasks`,
+  //     headers: headers
+  //   })
+  //   .then (response => console.log(response))
+  //   .catch(console.error)
+  }
+
+
+export default { login, signup, fetchTasks }
