@@ -3,11 +3,13 @@ import crossIcon from "../assets/images/icon-cross.svg";
 import checkicon from "../assets/images/icon-check.svg";
 import { useDispatch } from "react-redux";
 import {
-  addTask,
   removeTask,
   updateTask,
   markComplete,
-  getTasks,
+  markCompletePending,
+  markpendingComplete,
+  deleteFromCompleted,
+  deleteFromPending,
 } from "../statecontroller/tasksSlice";
 
 const Tasks = (props) => {
@@ -18,7 +20,7 @@ const Tasks = (props) => {
   return (
     <div className="taskcontainer">
       <div
-        className={props.className}
+        className="circle"
         onClick={(e) => {
           if (props.status !== "Completed") {
             dispatch(
@@ -35,6 +37,40 @@ const Tasks = (props) => {
               })
             );
           }
+
+          if (props.filters === "Pending") {
+            if (props.status !== "Completed") {
+              dispatch(
+                markpendingComplete({
+                  id: props.id,
+                  status: "Completed",
+                })
+              );
+            } else {
+              dispatch(
+                markpendingComplete({
+                  id: props.id,
+                  status: "Pending",
+                })
+              );
+            }
+          } else if (props.filters === "Completed") {
+            if (props.status !== "Completed") {
+              dispatch(
+                markCompletePending({
+                  id: props.id,
+                  status: "Completed",
+                })
+              );
+            } else {
+              dispatch(
+                markCompletePending({
+                  id: props.id,
+                  status: "Pending",
+                })
+              );
+            }
+          }
         }}>
         <img
           className={props.status === "Completed" ? "check" : "uncheck"}
@@ -42,17 +78,22 @@ const Tasks = (props) => {
           alt=""
         />
       </div>
+
       {!edit ? (
-        <li
-          id={props.id}
-          className="task"
-          onClick={(e) => {
-            setEdit(true);
-            console.log(e.target);
-          }}
-          status={props.status}>
-          {props.title}
-        </li>
+        <div className="taskcard">
+          <h1
+            id={props.id}
+            className="task"
+            onClick={(e) => {
+              setEdit(true);
+              console.log(e.target);
+            }}
+            status={props.status}>
+            {props.title}
+          </h1>
+
+          <p>{props.description}</p>
+        </div>
       ) : (
         <form action="" className="form">
           <input
@@ -92,12 +133,49 @@ const Tasks = (props) => {
               id: props.id,
             })
           );
+          if (props.filters === "Pending") {
+            dispatch(
+              deleteFromPending({
+                id: props.id,
+              })
+            );
+          } else if (props.filters === "Completed") {
+            dispatch(
+              deleteFromCompleted({
+                id: props.id,
+              })
+            );
+          }
         }}
         src={crossIcon}
         alt="delete"
       />
+
+      <div className="dueDate">
+        <p> Due on {props.dueDate}</p>
+      </div>
     </div>
   );
 };
 
 export default Tasks;
+
+// /
+
+// <div className="inputfield">
+// <div className="circle"></div>
+// <form
+
+//    action="" className="form">
+//   <input
+//     className="input-form"
+//     placeholder="Add your new task"
+//     type="text"
+//     value ={formData}
+//     onChange={e=>{
+//       setFormData(e.target.value)
+//     }}
+//     ref={inputRef}
+//   />
+//   <button type="submit" hidden></button>
+// </form>

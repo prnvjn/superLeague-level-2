@@ -12,7 +12,10 @@ import {
   deleteCompleted,
   getCompletedTasks,
   getPendingTasks,
+  markComplete,
 } from "../statecontroller/tasksSlice";
+import Inputfield from "./inpufield";
+import Note from ".//note";
 
 export const TodoCard = (props) => {
   const inputRef = useRef();
@@ -20,57 +23,99 @@ export const TodoCard = (props) => {
   const tasks = useSelector(getTasks);
   const completedTasks = useSelector(getCompletedTasks);
   const pendingTasks = useSelector(getPendingTasks);
-  const [formData, setFormData] = useState("");
+  const [title, setTitle] = useState("");
+  const [descript, setDescription] = useState("");
   const [filter, setFilter] = useState("All");
 
   return (
-    <div className="tasks">
-      <div className="tasksheader">
-        <h1>My Tasks</h1>
-        <img src={moonicon} alt="theme mode img" />
-      </div>
-
-      <div className="inputfield">
-        <div className="circle"></div>
-        <form
+    <div className="body">
+      <div className="tasks">
+        <div className="tasksheader">
+          <h1>My Tasks</h1>
+          <img src={moonicon} alt="theme mode img" />
+        </div>
+        <Inputfield
+          title={props.title}
+          titleValue={title}
+          handleTitleEdit={(e) => {
+            setTitle(e.target.value);
+            console.log(e.target.value);
+          }}
+          contentValue={descript}
+          changeContent={(e) => {
+            console.log(e.target.value);
+            setDescription(e.target.value);
+          }}
+          description={props.description}
           onSubmit={(e) => {
             e.preventDefault();
+            console.log(e.target);
             dispatch(
               addTask({
-                title: formData,
+                title: e.target.title,
+                description: e.target.description,
                 status: "pending",
-                dueDate: "2023-04-30T00:00:00.000Z",
+                dueDate: e.target.calender,
                 user: "john",
               })
             );
-            setFormData("");
           }}
-          action=""
-          className="form">
-          <input
-            className="input-form"
-            placeholder="Add your new task"
-            type="text"
-            value={formData}
-            onChange={(e) => {
-              setFormData(e.target.value);
-            }}
-            ref={inputRef}
-          />
-          <button type="submit" hidden></button>
-        </form>
-      </div>
+        />
 
-      <div className="alltaskscontainer">
+        <div className="alltaskscontainer">
+          <footer className="taskscontrols">
+            <p>{tasks.length} Tasks</p>
+            <div className="statuscard">
+              <p
+                onClick={() => {
+                  dispatch(getall());
+                  setFilter("All");
+                }}
+                className="task_status">
+                All
+              </p>
+              <p
+                onClick={() => {
+                  dispatch(getPending());
+                  setFilter("Pending");
+                }}
+                className="task_status">
+                Pending
+              </p>
+              <p
+                onClick={() => {
+                  dispatch(getCompleted());
+                  setFilter("Completed");
+                }}
+                className="task_status">
+                Completed
+              </p>
+            </div>
+
+            <p
+              onClick={() => {
+                console.log("clearing all");
+                dispatch(deleteCompleted());
+                setFilter("All");
+              }}
+              className="task_status">
+              Clear Completed
+            </p>
+          </footer>
+        </div>
+      </div>
+      <div className="tasklist">
         {filter === "All" &&
           tasks.map((task, index) => {
             return (
-              <Tasks
+              <Note
                 key={index}
                 id={task.id}
                 title={task.title}
                 status={task.status}
                 className={"circle"}
+                dueDate={task.dueDate}
+                description={task.description}
               />
             );
           })}
@@ -78,13 +123,15 @@ export const TodoCard = (props) => {
         {filter === "Pending" &&
           pendingTasks.map((task, index) => {
             return (
-              <Tasks
+              <Note
                 key={index}
                 id={task.id}
                 title={task.title}
                 status={task.status}
-                hide={"hide"}
-                className={".filter_circle"}
+                className={"circle"}
+                filters={filter}
+                dueDate={task.dueDate}
+                description={task.description}
               />
             );
           })}
@@ -92,55 +139,17 @@ export const TodoCard = (props) => {
         {filter === "Completed" &&
           completedTasks.map((task, index) => {
             return (
-              <Tasks
+              <Note
                 key={index}
                 id={task.id}
                 title={task.title}
                 status={task.status}
-                hide={"hide"}
-                className={".filter_circle"}
+                className={"circle"}
+                filters={filter}
+                description={task.description}
               />
             );
           })}
-        <div className="taskscontrols">
-          <p>{tasks.length} Tasks</p>
-          <div className="statuscard">
-            <p
-              onClick={() => {
-                dispatch(getall());
-                setFilter("All");
-              }}
-              className="task_status">
-              All
-            </p>
-            <p
-              onClick={() => {
-                dispatch(getPending());
-                setFilter("Pending");
-              }}
-              className="task_status">
-              Pending
-            </p>
-            <p
-              onClick={() => {
-                dispatch(getCompleted());
-                setFilter("Completed");
-              }}
-              className="task_status">
-              Completed
-            </p>
-          </div>
-
-          <p
-            onClick={() => {
-              console.log("clearing all");
-              dispatch(deleteCompleted());
-              setFilter("All")
-            }}
-            className="task_status">
-            Clear Completed
-          </p>
-        </div>
       </div>
     </div>
   );
