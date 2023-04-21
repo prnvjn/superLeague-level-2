@@ -6,6 +6,7 @@ import { Signup } from "./components/Signup";
 
 function App() {
   return (
+
     // <div className="App">
     //   <h1>Super League - Level 2 - Team 16</h1>
        <div className="App">
@@ -30,6 +31,7 @@ function App() {
        
        </div>
        
+
 
   );
 }
