@@ -62,22 +62,31 @@ body {
 }
 
 .circle {
-  border: 1px solid rgb(96, 97, 112);
+  border: 1px solid rgb(175, 178, 189);
   border-radius: 50%;
   height: 1.3rem;
   width: 1.3rem;
-  display: flex;
+  display: inherit;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
-.circle img {
+.check {
   height: 100%;
-  display: none;
-  height: 1rem;
-  width: 1rem;
+  width: 100%;
+  border-radius: 50%;
+  display: inherit;
+  height: 1.2rem;
+  width: 1.2rem;
   padding: 10%;
+  background-color: var(--BrightBlue);
+  transition: all 200ms ease-in-out;
+  opacity: 1;
+}
+.uncheck {
+  opacity: 0;
+  transition: all 200ms ease-in-out;
 }
 .tasksheader {
   display: flex;
@@ -152,11 +161,11 @@ body {
   list-style: none;
   color: var(--Very_Light_Gray);
   text-decoration: none;
+  display: inherit;
 }
 .taskcontainer > img {
   padding-left: 28%;
   cursor: pointer;
-  display: none;
 }
 
 .taskscontrols {
@@ -189,4 +198,21 @@ body {
 .task_status_checked {
   font-weight: 800;
   color: var(--BrightBlue);
+}
+.hide {
+  display: none;
+}
+.filter_circle {
+  border: 1px solid rgb(96, 97, 112);
+  border-radius: 50%;
+  height: 1.3rem;
+  width: 1.3rem;
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+.filter_circle img {
+  opacity: 0.1 !important;
 }
