@@ -1,6 +1,8 @@
 import "./App.css";
-import { Dashboard } from "./pages/dashboard";
+// import { Dashboard } from "./pages/dashboard";
+
 import { Login } from "./components/Login";
+import { Dashboard } from "./pages/dashboard";
 import {Routes, Route, Link} from 'react-router-dom';
 import { Signup } from "./components/Signup";
 
@@ -13,9 +15,9 @@ function App() {
         <nav className="navigation">
           
         <ul className="home">
-          <li><Link to="/login">Sign In</Link></li>
+          <li><Link to="/">Sign In</Link></li>
           <li><Link to="/signup" >Sign Up</Link></li>
-          <li> <Link to ="/dashboard" >Dashboard</Link></li>
+        
         </ul>
 
         </nav>
@@ -23,7 +25,7 @@ function App() {
 
         <Routes>
 
-<Route path="/login" element={<Login />} />
+<Route exact path="/" element={<Login />} />
 <Route path="/signup" element={<Signup />} />
 <Route path="/dashboard" element={<Dashboard/>} />
 

@@ -1,12 +1,18 @@
 import loginService from '../services/login'
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
+import {Routes, Route,redirect,useNavigate} from 'react-router-dom'
+import { Dashboad } from './Dashboad';
 import "../App.css";
 export const Login = () => {
     const [name, setUsername] = useState('') 
     const [password, setPassword] = useState('') 
     const [user, setUser] = useState(null)
     const [tasks, setTasks]=useState(null)
+    const [storage,setStorage] = useState(localStorage.getItem('token'))
+
+    const navigate = useNavigate()
+
     const handleLogin = async (event) => {
         event.preventDefault()
         
@@ -20,6 +26,7 @@ export const Login = () => {
           console.log(user,"login.jsx")
           setUsername('')
           setPassword('')
+        
         } catch (exception) {
           console.error('Wrong credentials')
           setTimeout(() => {
@@ -29,7 +36,16 @@ export const Login = () => {
     }
 
     useEffect(()=>{
-      
+      if(user||storage){
+        console.log("test")
+        try {
+          navigate("/dashboard")
+        } catch (error) {
+          console.error(error)
+        }
+        
+      }
+
      const getTask = async()=>{
       const tasksData = await loginService.fetchData()
       setTasks(tasksData)
@@ -38,10 +54,14 @@ export const Login = () => {
       getTask()
       }
     ,[user])
-    
-  return (
-    <div >Login
 
+   
+
+  return (
+    <div className='form' >
+      
+<div className='account'>
+<h1>Login</h1>
 <form onSubmit={handleLogin}>
       <div>
         username
@@ -63,7 +83,13 @@ export const Login = () => {
       </div>
       <button type="submit">login</button>
     </form> 
+
+</div>
+
     {console.log(tasks)}     
+
+
+
     </div>
   )
 }

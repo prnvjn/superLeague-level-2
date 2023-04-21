@@ -31,4 +31,11 @@
 .App-link {
   color: #61dafb;
 }
+.account{
+  background: #eaf2ff;
+  max-width: 500px;
+}
+.form{
+  display: flex;
 
+}

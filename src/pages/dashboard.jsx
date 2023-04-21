@@ -1,10 +1,25 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { TodoCard } from "../components/todocard";
+import { useNavigate} from 'react-router-dom'
+
+
 
 export const Dashboard = () => {
     const [userTasks, SetUserTasks] = useState(null)
     const [tokenAvailable, SetTokenAvailable] = useState(false)
+    // just to see which user is logged in
+    const [user,setUser] = useState(localStorage.getItem('user')) 
+    const navigate = useNavigate()
+    const onHandle =()=>{
+     localStorage.clear()
+    
+    navigate('/')
+    
+    }
+    
+
+
     const fetchTasks = async () => {
         const token = 'Bearer ' + localStorage.getItem('token')
         console.log(token)
@@ -30,6 +45,8 @@ export const Dashboard = () => {
 
   return (
     <div className="container">
+      <h1>Welcome {user}</h1>
+      <button onClick={onHandle}>Log out</button>
       <TodoCard taskData = {userTasks}/>
       <button onClick={() => fetchTasks()}>Click</button>
     </div>
