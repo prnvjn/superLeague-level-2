@@ -4,6 +4,7 @@ import { TodoCard } from "../components/todocard";
 
 export const Dashboard = () => {
     const [userTasks, SetUserTasks] = useState(null)
+    const [tokenAvailable, SetTokenAvailable] = useState(false)
     const fetchTasks = async () => {
         const token = 'Bearer ' + localStorage.getItem('token')
         console.log(token)
@@ -29,7 +30,7 @@ export const Dashboard = () => {
 
   return (
     <div className="container">
-      <TodoCard />
+      <TodoCard taskData = {userTasks}/>
       <button onClick={() => fetchTasks()}>Click</button>
     </div>
   );

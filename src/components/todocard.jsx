@@ -13,7 +13,7 @@ import {
 
 
 
-export const TodoCard = (props) => {
+export const TodoCard = (props, { taskData }) => {
   const inputRef = useRef();
   const dispatch = useDispatch();
   const tasks = useSelector(getTasks);
