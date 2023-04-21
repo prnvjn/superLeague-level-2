@@ -57,6 +57,7 @@ export const TodoCard = (props) => {
                 status: "pending",
                 dueDate: e.target.calender,
                 user: "john",
+              
               })
             );
           }}
