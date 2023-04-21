@@ -1,11 +1,12 @@
 import loginService from '../services/login'
-import React, {useState} from 'react'
+import axios from 'axios';
+import React, {useState, useEffect} from 'react'
 import "../App.css";
 export const Login = () => {
     const [name, setUsername] = useState('') 
     const [password, setPassword] = useState('') 
     const [user, setUser] = useState(null)
-    
+    const [tasks, setTasks]=useState(null)
     const handleLogin = async (event) => {
         event.preventDefault()
         
@@ -15,7 +16,8 @@ export const Login = () => {
           }).then(
             localStorage.setItem("user", name)
           )
-          setUser(user)
+          setUser(user) 
+          console.log(user,"login.jsx")
           setUsername('')
           setPassword('')
         } catch (exception) {
@@ -25,6 +27,18 @@ export const Login = () => {
           }, 5000)
         }
     }
+
+    useEffect(()=>{
+      
+     const getTask = async()=>{
+      const tasksData = await loginService.fetchData()
+      setTasks(tasksData)
+     }
+  
+      getTask()
+      }
+    ,[user])
+    
   return (
     <div >Login
 
@@ -49,7 +63,7 @@ export const Login = () => {
       </div>
       <button type="submit">login</button>
     </form> 
-    {console.log(user)}     
+    {console.log(tasks)}     
     </div>
   )
 }

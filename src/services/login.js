@@ -36,7 +36,18 @@ const fetchTasks = async () => {
   //   .then (response => console.log(response))
   //   .catch(console.error)
   }
+const fetchData = async()=>{
+    try {
+      const response = await axios.get(baseUrl, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      return response.data
+    
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
-export default { login, signup, fetchTasks }
+export default { login, signup, fetchData }
 
